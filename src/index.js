@@ -1,40 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-/*First component created*/
-
-function Cartoon(props){
-	return <h1>Hello, {props.name} age {props.age}</h1>
-
-}
 
 
 
-//component using class
-/*
-class Cartoon extends React.Component{
-	render (){
-		return <h1>Hello, {this.props.name}</h1>
+
+class Clock extends React.Component{
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			date: new Date()
+		}
 	}
 
+	componentDidMount(){
+
+		this.timer = setInterval(() => this.start(), 1000)
+	}
+
+	componentWillUnmount(){
+		clearInterval(this.timer)
+	}
+
+
+ start(){
+
+ 	this.setState({
+ 		date: new Date()
+ 	});
 }
 
-*/
+	render(){
+		return <h1>Now Date:- {this.state.date.toLocaleTimeString()}</h1>
+	}
 
-function Show(){
-	return <div>
-		<Cartoon name='Goutham' age= '25'/>
-		<Cartoon name='Samyuktha' age = '2'/>
-		</div>
+
 }
 
 
 
-	ReactDOM.render(
-
-	<Show />,
+ReactDOM.render(
+	<Clock />,
 	document.getElementById('root')
 
-	)
-
-
+)
