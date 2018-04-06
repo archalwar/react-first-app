@@ -1,47 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//https://www.youtube.com/watch?v=ffjCtBhsDv4&list=PLe30vg_FG4OT1gN7waO7ESyrn7EfI_fG-&index=12
 
-function Message(props){
+function ToonList(props){
 
-	if(props.value){
-		return <h1>Default Message</h1>
-	}
+	const list= props.cartoon;
+	//const toons = list.map((list, index) => <li key = {index}>{list}</li>)
 
-	return <h1>New Text Message</h1>
-
+		return <ul>
+			{list.map((list, index) => <li key = {index}>{list}</li>)}
+			</ul>
+			
 }
 
-class Btn extends React.Component{
+const cartoons = ['Mickymouse', 'SuperMan', 'Batman', 'Spiderman', 'Spiderman']
 
-	constructor(props){
-		super(props);
 
-		this.state = { value: true}
-	}
-	
 
-	handleClick = () => {
-		this.setState({ 
-
-			value : !this.state.value
-		}) ;
-	}
-
-	render(){
-
-		return <div>
-					<button onClick={this.handleClick}>Change Text</button>
-					<Message value = {this.state.value}/>
-				</div>
-	}
-}
 
 
 
 ReactDOM.render(
-
-<Btn />,
-document.getElementById('root')
+	<ToonList cartoon = {cartoons}/>,
+	document.getElementById('root')
 
 	)
