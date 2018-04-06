@@ -2,39 +2,46 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
+function Message(props){
 
+	if(props.value){
+		return <h1>Default Message</h1>
+	}
 
-class Inc extends React.Component{
+	return <h1>New Text Message</h1>
+
+}
+
+class Btn extends React.Component{
 
 	constructor(props){
 		super(props);
 
-		this.state ={
-			counter : 0
-		}
-
-		this.increment = this.increment.bind(this);
+		this.state = { value: true}
 	}
+	
 
-	increment = (e) =>{
-		e.preventDefault();
+	handleClick = () => {
+		this.setState({ 
 
-		this.setState({
-			counter: this.state.counter + 1
-		});
+			value : !this.state.value
+		}) ;
 	}
-
 
 	render(){
-		return <a href='google.com' onClick={this.increment}>Value {this.state.counter} </a>
- 	}
+
+		return <div>
+					<button onClick={this.handleClick}>Change Text</button>
+					<Message value = {this.state.value}/>
+				</div>
+	}
 }
 
 
 
 ReactDOM.render(
-	<Inc />,
-	document.getElementById('root')
 
-)
+<Btn />,
+document.getElementById('root')
 
+	)
